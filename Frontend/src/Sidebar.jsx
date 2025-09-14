@@ -18,7 +18,7 @@ function Sidebar({ isMobile = false, closeMobile }) {
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = useState(null);
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
   const [hoverLogo, setHoverLogo] = useState(false);
 
   // Fetch threads
