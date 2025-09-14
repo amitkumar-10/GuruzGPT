@@ -140,8 +140,9 @@ function Sidebar({ isMobile = false, closeMobile }) {
 
   return (
     <section
-      className={`bg-neutral-900 text-gray-400 h-screen flex flex-col justify-between transition-all duration-300 ${isMobile ? "w-64" : collapsed ? "w-16" : "w-80"
-        } ${!isMobile ? "hidden md:flex" : ""}`}
+      className={`bg-neutral-900 text-gray-400 h-screen flex flex-col transition-all duration-300 
+      ${isMobile ? "w-64" : collapsed ? "w-16" : "w-80"} 
+      ${!isMobile ? "hidden md:flex" : ""}`}
     >
       {/* Top bar */}
       <div className="flex items-center justify-between m-2 p-2 rounded-md hover:bg-gray-400/5 transition">
@@ -189,27 +190,25 @@ function Sidebar({ isMobile = false, closeMobile }) {
       </div>
 
       {/* New Chat */}
-      {/* New Chat */}
       <button
         onClick={createNewChat}
         className="flex items-center m-2 p-2 rounded-md hover:bg-gray-400/5 transition"
       >
         <i className="fa-solid fa-pen-to-square text-lg"></i>
-        {/* Show text only if sidebar is expanded or mobile */}
         {(!collapsed || isMobile) && <span className="ml-2">Create New Chat</span>}
       </button>
 
-      {/* Threads */}
-      <ul className="m-2 p-2 h-full overflow-y-auto">
+      {/* Threads (Scrollable Middle Section) */}
+      <div className="flex-1 overflow-y-auto m-2 p-2">
         {(!collapsed || isMobile) && <p className="text-sm mb-3">Chats</p>}
 
         {allThreads.length === 0 ? (
           (!collapsed || isMobile) && (
-            <li className="text-sm text-gray-500">No threads available</li>
+            <p className="text-sm text-gray-500">No threads available</p>
           )
         ) : (
-          allThreads.map(thread => (
-            <li
+          allThreads.map((thread) => (
+            <div
               key={thread.threadId}
               onClick={() => changeThread(thread.threadId)}
               className={`relative flex items-center justify-between px-2 py-2 mb-1 text-sm rounded-md hover:bg-gray-400/5 cursor-pointer ${thread.threadId === currThreadId ? "bg-gray-400/5" : ""
@@ -219,24 +218,26 @@ function Sidebar({ isMobile = false, closeMobile }) {
                 {collapsed && !isMobile ? (
                   <i className="fa-solid fa-comment-dots"></i>
                 ) : (
-                  <span className="truncate">{thread.title || "Untitled"}</span>
+                  <span className="truncate">
+                    {thread.title || "Untitled"}
+                  </span>
                 )}
               </div>
               {(!collapsed || isMobile) && (
                 <i
                   className="fa-solid fa-trash text-white hover:text-red-400 cursor-pointer"
-                  onClick={e => {
+                  onClick={(e) => {
                     e.stopPropagation();
                     deleteThread(thread.threadId);
                   }}
                 ></i>
               )}
-            </li>
+            </div>
           ))
         )}
-      </ul>
+      </div>
 
-      {/* Footer */}
+      {/* Footer (Always at Bottom) */}
       <div className="p-2 m-2 text-sm text-center border-t border-white/50">
         {(!collapsed || isMobile) ? (
           <>
