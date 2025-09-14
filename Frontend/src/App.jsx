@@ -42,7 +42,7 @@ function App() {
   }, [navigate]);
 
   return (
-    <div className="flex bg-neutral-900 text-gray-200 font-sans max-h-screen">
+    <div className="flex bg-neutral-900 text-gray-200 font-sans h-screen">
       <MyContext.Provider value={providerValues}>
         <Sidebar />
         <ChatWindow />
