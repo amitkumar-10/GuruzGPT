@@ -48,7 +48,7 @@ function Chat() {
       {content}
     </ReactMarkdown>
   );
- return (
+return (
     <div className="max-h-screen bg-customdark text-white">
       {/* Chat container full width on phones, centered on bigger screens */}
       <div className="chats w-full sm:max-w-[700px] mx-auto px-2 sm:px-4 py-6 sm:py-10">
@@ -88,7 +88,6 @@ function Chat() {
       </div>
     </div>
   );
-
 
 }
 
