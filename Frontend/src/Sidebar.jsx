@@ -140,9 +140,9 @@ function Sidebar({ isMobile = false, closeMobile }) {
 
   return (
     <section
-      className={`bg-neutral-900 text-gray-400 h-screen flex flex-col transition-all duration-300 
-      ${isMobile ? "w-64" : collapsed ? "w-16" : "w-80"} 
-      ${!isMobile ? "hidden md:flex" : ""}`}
+      className={`bg-neutral-900 text-gray-400 flex flex-col h-screen transition-all duration-300 
+    ${isMobile ? "w-64" : collapsed ? "w-16" : "w-80"} 
+    ${!isMobile ? "hidden md:flex" : ""}`}
     >
       {/* Top bar */}
       <div className="flex items-center justify-between m-2 p-2 rounded-md hover:bg-gray-400/5 transition">
@@ -218,9 +218,7 @@ function Sidebar({ isMobile = false, closeMobile }) {
                 {collapsed && !isMobile ? (
                   <i className="fa-solid fa-comment-dots"></i>
                 ) : (
-                  <span className="truncate">
-                    {thread.title || "Untitled"}
-                  </span>
+                  <span className="truncate">{thread.title || "Untitled"}</span>
                 )}
               </div>
               {(!collapsed || isMobile) && (
@@ -238,7 +236,7 @@ function Sidebar({ isMobile = false, closeMobile }) {
       </div>
 
       {/* Footer (Always at Bottom) */}
-      <div className="p-2 m-2 text-sm text-center border-t border-white/50">
+      <div className="flex-shrink-0 p-2 m-2 text-sm text-center border-t border-white/50">
         {(!collapsed || isMobile) ? (
           <>
             <p>{userEmail || "Not logged in"}</p>
@@ -249,6 +247,8 @@ function Sidebar({ isMobile = false, closeMobile }) {
         )}
       </div>
     </section>
+
+
   );
 }
 
