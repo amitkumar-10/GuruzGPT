@@ -24,7 +24,7 @@ const Signup = () => {
     try {
       console.log("Sending signup request with formData:", formData);
       const response = await axios.post(
-        "http://localhost:8080/api/signup",
+        "https://guruzgpt.onrender.com/api/signup",
         formData,
         { withCredentials: true }
       );
@@ -104,5 +104,6 @@ const Signup = () => {
     </div>
   );
 };
+
 
 export default Signup;
