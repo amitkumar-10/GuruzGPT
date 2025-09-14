@@ -14,6 +14,7 @@ const Signup = () => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false); 
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -21,39 +22,54 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     try {
       console.log("Sending signup request with formData:", formData);
       const response = await axios.post(
+        // "http://localhost:8080/api/signup",
         "https://guruzgpt.onrender.com/api/signup",
         formData,
         { withCredentials: true }
       );
+
       console.log("Signup response:", response.data);
       localStorage.setItem("token", response.data.token);
-     
+
       setUser(response.data.user);
       toast.success(response.data.message || "Signup successful");
+
       setTimeout(() => {
         navigate("/"); // Navigate to home page
       }, 2000);
     } catch (error) {
-      const msg = error?.response?.data?.error || error?.response?.data?.message || "Signup failed. Please try again.";
+      const msg =
+        error?.response?.data?.error ||
+        error?.response?.data?.message ||
+        "Signup failed. Please try again.";
       console.error("Signup error:", error.message, error.response?.data);
       toast.error(msg);
-      // Optionally navigate to login if signup fails
+
       setTimeout(() => {
-        console.log("Navigating to login after signup failure");
-        navigate("/login");
+        setLoading(false); // stop loading on failure
+        navigate("/login"); // Optional redirect
       }, 2000);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
-        <h2 className="text-3xl font-bold text-center mb-6">Create Account</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300 px-4">
+      {/* Title outside the card */}
+      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 font-syne">
+        Welcome to GuruzGPT
+      </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Sign Up Card */}
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+        <h3 className="text-xl sm:text-2xl font-semibold text-center mb-6">
+          Create Account
+        </h3>
+
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
           <input
             type="text"
             name="name"
@@ -61,7 +77,7 @@ const Signup = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <input
@@ -71,7 +87,7 @@ const Signup = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <input
@@ -81,18 +97,23 @@ const Signup = () => {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 sm:px-4 py-2 border rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition"
+            disabled={loading}
+            className={`w-full py-2 rounded-lg transition text-sm sm:text-base ${
+              loading
+                ? "bg-gray-600 text-white cursor-not-allowed"
+                : "bg-black text-white hover:bg-gray-800"
+            }`}
           >
-            Sign Up
+            {loading ? "Sign Up..." : "Sign Up"}
           </button>
         </form>
 
-        <p className="text-center mt-6 text-sm text-gray-500">
+        <p className="text-center mt-5 sm:mt-6 text-xs sm:text-sm text-gray-500">
           Already have an account?{" "}
           <Link to="/login" className="text-black font-medium hover:underline">
             Login
@@ -104,6 +125,5 @@ const Signup = () => {
     </div>
   );
 };
-
 
 export default Signup;
