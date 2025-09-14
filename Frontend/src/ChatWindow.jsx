@@ -152,7 +152,7 @@ function ChatWindow() {
           <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsMobileOpen(false)} />
           <div className="fixed top-0 left-0 w-64 h-full bg-neutral-900 shadow-lg z-50 transform transition-transform duration-300">
             <button className="absolute top-4 right-4 text-white text-xl" onClick={() => setIsMobileOpen(false)}>
-              <i className="fa-solid fa-xmark"></i>
+              
             </button>
             <Sidebar isMobile={true} closeMobile={() => setIsMobileOpen(false)} />
           </div>
