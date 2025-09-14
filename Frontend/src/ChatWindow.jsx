@@ -108,7 +108,7 @@ function ChatWindow() {
   };
 
   return (
-    <div className="bg-customdark h-screen w-full flex flex-col relative">
+    <div className="bg-customdark max-h-screen w-full flex flex-col relative">
       {/* Navbar */}
       <div className="w-full flex justify-between items-center px-4 py-3 border-b border-white/10">
         <span className="text-white font-medium tracking-wide flex items-center gap-2">
@@ -152,7 +152,7 @@ function ChatWindow() {
           <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setIsMobileOpen(false)} />
           <div className="fixed top-0 left-0 w-64 h-full bg-neutral-900 shadow-lg z-50 transform transition-transform duration-300">
             <button className="absolute top-4 right-4 text-white text-xl" onClick={() => setIsMobileOpen(false)}>
-              
+              {/* <i className="fa-solid fa-xmark"></i> */}
             </button>
             <Sidebar isMobile={true} closeMobile={() => setIsMobileOpen(false)} />
           </div>
