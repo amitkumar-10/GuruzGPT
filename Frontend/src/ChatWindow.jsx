@@ -41,7 +41,7 @@ function ChatWindow() {
         return;
       }
 
-      const response = await fetch("http://localhost:8080/api/chat", {
+      const response = await fetch("https://guruzgpt.onrender.com/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ message: prompt, threadId: currThreadId }),
@@ -57,7 +57,7 @@ function ChatWindow() {
       setReply(res.reply);
 
       // Refresh threads
-      const threadResponse = await fetch("http://localhost:8080/api/thread", {
+      const threadResponse = await fetch("https://guruzgpt.onrender.com/api/thread", {
         method: "GET",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       });
