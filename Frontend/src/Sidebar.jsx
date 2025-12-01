@@ -27,7 +27,7 @@ function Sidebar({ isMobile = false, closeMobile }) {
       const token = localStorage.getItem("token");
       if (!token) return navigate("/login");
 
-      const response = await fetch("http://localhost:8080/api/thread", {
+      const response = await fetch("https://guruzgpt.onrender.com/api/thread", {
         method: "GET",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       });
@@ -54,7 +54,7 @@ function Sidebar({ isMobile = false, closeMobile }) {
       const token = localStorage.getItem("token");
       if (!token) return navigate("/login");
 
-      const response = await fetch("http://localhost:8080/api/user", {
+      const response = await fetch("https://guruzgpt.onrender.com/api/user", {
         method: "GET",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       });
@@ -96,7 +96,7 @@ function Sidebar({ isMobile = false, closeMobile }) {
       const token = localStorage.getItem("token");
       if (!token) return navigate("/login");
 
-      const response = await fetch(`http://localhost:8080/api/thread/${threadId}`, {
+      const response = await fetch(`https://guruzgpt.onrender.com/api/thread/${threadId}`, {
         method: "GET",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       });
@@ -121,7 +121,7 @@ function Sidebar({ isMobile = false, closeMobile }) {
       const token = localStorage.getItem("token");
       if (!token) return navigate("/login");
 
-      const response = await fetch(`http://localhost:8080/api/thread/${threadId}`, {
+      const response = await fetch(`https://guruzgpt.onrender.com/api/thread/${threadId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       });
