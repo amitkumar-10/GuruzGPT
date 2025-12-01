@@ -25,7 +25,7 @@ const Login = () => {
     setLoading(true); // start loading
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/login",
+        "https://guruzgpt.onrender.com/api/login",
         // "https://guruzgpt.onrender.com/api/login",
         formData,
         { withCredentials: true }
@@ -113,3 +113,4 @@ const Login = () => {
 };
 
 export default Login;
+
