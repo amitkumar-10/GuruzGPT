@@ -12,7 +12,7 @@ const PORT = 8080;
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://guruz-gpt.vercel.app/login", // frontend URL
+    origin: "https://guruz-gpt.vercel.app/", // frontend URL
     credentials: true, // allow cookies/authorization headers
   })
 );
